@@ -1,19 +1,26 @@
-import express, { Request, Response, Application } from "express";
+import express, { Application } from "express";
 import config from "../config";
+import productRoutes from "./route/product.route";
+import mongoose from "mongoose";
 
 const port = config.port as number;
 const host = config.host as string;
+const db = config.dbUri as string;
 
 const app: Application = express();
 
-// Routes
-app.use("/", (req: Request, res: Response) => {
-  res.send({ hello: "world" });
-});
+// Connect Mongoose
+mongoose
+  .connect(db)
+  .then(() => console.log("Connected to DB!"))
+  .catch((error) => console.log(error));
 
 // Config
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Routes
+app.use("/products", productRoutes);
 
 // Listen
 app.listen(port, host, () => {
