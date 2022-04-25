@@ -1,23 +1,12 @@
-import express, { Request, Response } from "express";
-import Product from "../model/product.model";
+import express from "express";
+import productHandler from "../controller/product.controller";
+
 const router = express.Router();
 
-router.get("/all", async (req: Request, res: Response) => {
-  const product = await Product.find({});
-  res.send(product);
-});
+router.get("/all", productHandler.findAllHandler);
 
-router.post("/new", async (req: Request, res: Response) => {
-  const { title, subtitle, desc, key, url } = req.body;
-  const product = new Product({
-    title,
-    subtitle,
-    desc,
-    key,
-    url,
-  });
-  await product.save();
-  res.send(product);
-});
+router.post("/new", productHandler.newProductHandler);
+
+router.get("/:id", productHandler.findProductHandler);
 
 export default router;
