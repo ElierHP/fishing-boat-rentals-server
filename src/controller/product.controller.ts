@@ -4,6 +4,7 @@ import {
   newProduct,
   findProduct,
   editProduct,
+  deleteProduct,
 } from "../service/product.service";
 
 const findProductHandler = async (req: Request, res: Response) => {
@@ -27,9 +28,15 @@ const editProductHandler = async (req: Request, res: Response) => {
   res.sendStatus(200);
 };
 
+const deleteProductHandler = async (req: Request, res: Response) => {
+  await deleteProduct(req.params.id);
+  res.sendStatus(200);
+};
+
 export default {
   newProductHandler,
   findAllHandler,
   findProductHandler,
   editProductHandler,
+  deleteProductHandler,
 };

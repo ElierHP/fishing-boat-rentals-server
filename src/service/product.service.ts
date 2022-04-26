@@ -8,9 +8,9 @@ const findAll = () => Product.find({});
 const newProduct = (input: DocumentDefinition<ProductDocument>) =>
   new Product(input).save();
 
-const editProduct = (id: string, update: any) => {
-  const product = Product.findByIdAndUpdate(id, { ...update });
-  return product;
-};
+const editProduct = (id: string, update: DocumentDefinition<ProductDocument>) =>
+  Product.findByIdAndUpdate(id, { ...update });
 
-export { findAll, newProduct, findProduct, editProduct };
+const deleteProduct = (id: string) => Product.findByIdAndDelete(id);
+
+export { findAll, newProduct, findProduct, editProduct, deleteProduct };
