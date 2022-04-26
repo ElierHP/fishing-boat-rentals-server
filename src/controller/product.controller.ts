@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
-import { findAll, newProduct, findProduct } from "../service/product.service";
+import {
+  findAll,
+  newProduct,
+  findProduct,
+  editProduct,
+} from "../service/product.service";
 
 const findProductHandler = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -17,4 +22,14 @@ const newProductHandler = async (req: Request, res: Response) => {
   res.send(product);
 };
 
-export default { newProductHandler, findAllHandler, findProductHandler };
+const editProductHandler = async (req: Request, res: Response) => {
+  await editProduct(req.params.id, { ...req.body });
+  res.sendStatus(200);
+};
+
+export default {
+  newProductHandler,
+  findAllHandler,
+  findProductHandler,
+  editProductHandler,
+};

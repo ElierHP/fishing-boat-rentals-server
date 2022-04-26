@@ -8,4 +8,9 @@ const findAll = () => Product.find({});
 const newProduct = (input: DocumentDefinition<ProductDocument>) =>
   new Product(input).save();
 
-export { findAll, newProduct, findProduct };
+const editProduct = (id: string, update: any) => {
+  const product = Product.findByIdAndUpdate(id, { ...update });
+  return product;
+};
+
+export { findAll, newProduct, findProduct, editProduct };
