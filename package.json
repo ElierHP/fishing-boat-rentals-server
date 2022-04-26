@@ -11,8 +11,7 @@
   "author": "Elier Hernandez",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.3",
-    "uuid": "^8.3.2"
+    "express": "^4.17.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

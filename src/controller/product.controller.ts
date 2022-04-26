@@ -8,13 +8,12 @@ const findProductHandler = async (req: Request, res: Response) => {
 };
 
 const findAllHandler = async (req: Request, res: Response) => {
-  const product = await findAll();
-  res.send(product);
+  const products = await findAll();
+  res.send(products);
 };
 
 const newProductHandler = async (req: Request, res: Response) => {
-  const { title, subtitle, desc, url } = req.body;
-  const product = newProduct(title, subtitle, desc, url);
+  const product = await newProduct({ ...req.body });
   res.send(product);
 };
 

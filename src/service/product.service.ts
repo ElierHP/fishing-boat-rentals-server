@@ -1,25 +1,11 @@
-import Product from "../model/product.model";
-import { v4 as uuidv4 } from "uuid";
+import Product, { ProductDocument } from "../model/product.model";
+import { DocumentDefinition } from "mongoose";
 
 const findProduct = (id: string) => Product.findById(id);
 
 const findAll = () => Product.find({});
 
-const newProduct = (
-  title: string,
-  subtitle: string,
-  desc: string,
-  url: string
-) => {
-  const product = new Product({
-    title,
-    subtitle,
-    desc,
-    key: uuidv4(),
-    url,
-  });
-  product.save();
-  return product;
-};
+const newProduct = (input: DocumentDefinition<ProductDocument>) =>
+  new Product(input).save();
 
 export { findAll, newProduct, findProduct };
