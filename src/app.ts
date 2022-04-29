@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import config from "../config";
 import productRoutes from "./route/product.route";
 import mongoose from "mongoose";
+import cors from "cors";
 
 const port = config.port as number;
 const host = config.host as string;
@@ -18,6 +19,7 @@ mongoose
 // Config
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // Routes
 app.use("/products", productRoutes);
