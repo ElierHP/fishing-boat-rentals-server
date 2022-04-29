@@ -1,2 +1,2 @@
-# fishing-boat-rentals-server
-Server for Fishing Boat Rentals; built using Express &amp; Typescript.
+# Fishing Boat Rental Server
+Practice project for learning Typescript with Express.
